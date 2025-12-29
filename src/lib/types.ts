@@ -38,8 +38,12 @@ export interface Product {
 
 export interface CartItem {
     productId: string;
+    productName: string;
+    productSlug: string;
+    productImage?: string;
     quantity: number;
     selectedOptions: Record<string, string>; // optionId -> valueId
+    displayOptions: Record<string, string>; // Option Name -> Value Name (e.g. "Wood" -> "Cherry")
     totalPrice: number;
 }
 

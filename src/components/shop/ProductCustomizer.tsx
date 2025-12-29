@@ -46,10 +46,29 @@ export const ProductCustomizer = ({ product }: ProductCustomizerProps) => {
     };
 
     const handleAddToCart = () => {
+        // Resolve display options
+        const displayOptions: Record<string, string> = {};
+
+        product.options.forEach(opt => {
+            const valId = selectedOptions[opt.id];
+            const val = opt.values.find(v => v.id === valId);
+            if (val) {
+                // e.g. "Wood Type": "Cherry (+$150)"
+                const priceStr = val.priceModifier !== 0
+                    ? ` (${val.priceModifier > 0 ? '+' : ''}$${val.priceModifier})`
+                    : '';
+                displayOptions[opt.name] = `${val.name}${priceStr}`;
+            }
+        });
+
         addToCart({
             productId: product.id,
+            productName: product.name,
+            productSlug: product.slug,
+            productImage: product.images[0],
             quantity: 1,
             selectedOptions: selectedOptions,
+            displayOptions: displayOptions,
             totalPrice: currentPrice
         });
         alert(`Added ${product.name} to cart!`);
