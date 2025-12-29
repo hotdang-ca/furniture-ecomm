@@ -1,0 +1,97 @@
+.container {
+    background-color: var(--color-surface);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    position: sticky;
+    top: 100px;
+}
+
+.priceContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.label {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+}
+
+.price {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-primary);
+}
+
+.options {
+    margin-bottom: var(--spacing-md);
+}
+
+.optionGroup {
+    margin-bottom: var(--spacing-md);
+}
+
+.optionLabel {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.radioGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.radio {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.radioSelected {
+    border-color: var(--color-primary);
+    background-color: rgba(74, 55, 40, 0.05);
+    font-weight: 600;
+}
+
+.radioInput {
+    display: none;
+}
+
+.modifier {
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+}
+
+.addToCartBtn {
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
+}
+
+.leadTime {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+}

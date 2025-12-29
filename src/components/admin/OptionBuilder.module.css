@@ -1,0 +1,87 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.optionCard {
+    background-color: #f9f9f9;
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+}
+
+.optionHeader {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 1px solid #eee;
+}
+
+.input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+}
+
+.select {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.removeBtn {
+    color: #e74c3c;
+    background: none;
+    border: none;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.valuesList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.valueRow {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.priceInputGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: #666;
+}
+
+.inputSm {
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 80px;
+}
+
+.removeBtnSm {
+    color: #999;
+    font-size: 1.2rem;
+    background: none;
+    border: none;
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.removeBtnSm:hover {
+    color: #e74c3c;
+}
