@@ -1,0 +1,4 @@
+.title {
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary);
+}

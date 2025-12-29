@@ -111,8 +111,15 @@ export default function CheckoutPage() {
                     <div className={styles.itemList}>
                         {items.map((item, idx) => (
                             <div key={idx} className={styles.item}>
-                                <span>{item.quantity}x Product ({item.productId})</span>
-                                <span>${item.totalPrice.toLocaleString()}</span>
+                                <div className={styles.itemDetails}>
+                                    <span className={styles.itemName}>{item.quantity}x {item.productName}</span>
+                                    <div className={styles.itemOptions}>
+                                        {Object.entries(item.displayOptions || {}).map(([key, val]) => (
+                                            <div key={key}>{key}: {val}</div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <span className={styles.itemPrice}>${(item.totalPrice * item.quantity).toLocaleString()}</span>
                             </div>
                         ))}
                     </div>

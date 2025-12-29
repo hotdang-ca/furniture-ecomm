@@ -97,3 +97,23 @@
         grid-template-columns: 1fr;
     }
 }
+
+.itemDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.itemName {
+    font-weight: 600;
+}
+
+.itemOptions {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.itemPrice {
+    font-weight: 600;
+    margin-left: 1rem;
+}

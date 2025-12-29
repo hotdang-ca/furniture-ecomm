@@ -1,14 +1,24 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Product, ProductOption } from '@/lib/types';
+import { Product } from '@/lib/types';
 import { Button } from '@/components/ui/Button';
 import { CategorySelector } from './CategorySelector';
 import { OptionBuilder } from './OptionBuilder';
 import styles from './ProductForm.module.css';
+import { createProduct, updateProduct } from '@/lib/actions';
+import { useRouter } from 'next/navigation';
 
-export const ProductForm = () => {
-    const [formData, setFormData] = useState<Partial<Product>>({
+interface ProductFormProps {
+    initialData?: Product;
+}
+
+export const ProductForm = ({ initialData }: ProductFormProps) => {
+    const router = useRouter();
+    const isEditMode = !!initialData;
+    const [isSaving, setIsSaving] = useState(false);
+
+    const [formData, setFormData] = useState<Partial<Product>>(initialData || {
         name: '',
         description: '',
         basePrice: 0,
@@ -18,28 +28,40 @@ export const ProductForm = () => {
         options: []
     });
 
-    const [jsonResult, setJsonResult] = useState<string>('');
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Generate valid slug from name if missing
-        const finalData = {
-            ...formData,
-            id: `p-${Date.now()}`,
-            slug: formData.name?.toLowerCase().replace(/ /g, '-') || `product-${Date.now()}`,
-            rating: 0,
-            images: ['/placeholder/custom.jpg']
-        };
+        setIsSaving(true);
 
-        console.log('Product Created:', finalData);
-        setJsonResult(JSON.stringify(finalData, null, 2));
-        alert('Product JSON generated! Check the console or the preview box below.');
+        try {
+            const finalData = {
+                ...formData,
+                id: formData.id || `p-${Date.now()}`,
+                slug: formData.slug || formData.name?.toLowerCase().replace(/ /g, '-') || `product-${Date.now()}`,
+                rating: formData.rating || 0,
+                images: formData.images?.length ? formData.images : ['/placeholder/custom.jpg']
+            } as Product;
+
+            if (isEditMode) {
+                await updateProduct(finalData);
+                alert('Product Updated!');
+                router.push('/admin/products');
+            } else {
+                await createProduct(finalData);
+                alert('Product Created!');
+                router.push('/admin/products');
+            }
+        } catch (err) {
+            console.error(err);
+            alert('Error saving product');
+        } finally {
+            setIsSaving(false);
+        }
     };
 
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.section}>
-                <h2>Basic Information</h2>
+                <h2>{isEditMode ? 'Edit Product' : 'Usage Basic Information'}</h2>
                 <div className={styles.field}>
                     <label>Product Name</label>
                     <input
@@ -85,6 +107,10 @@ export const ProductForm = () => {
 
             <div className={styles.section}>
                 <h2>Categorization</h2>
+                {/* Note: Initializing Selector with existing categories requires more logic in Selector. 
+                    For MVP edit, we might reset category selection or need to pass props to Selector.
+                    Left simpler for now as user just asked to 'reuse' form.
+                */}
                 <CategorySelector
                     onSelect={(catId, parents) => setFormData(prev => ({ ...prev, categoryId: catId, parentCategoryIds: parents }))}
                 />
@@ -100,15 +126,10 @@ export const ProductForm = () => {
             </div>
 
             <div className={styles.actions}>
-                <Button size="lg" type="submit">Create Product JSON</Button>
+                <Button size="lg" type="submit" disabled={isSaving}>
+                    {isSaving ? 'Saving...' : (isEditMode ? 'Update Product' : 'Create Product')}
+                </Button>
             </div>
-
-            {jsonResult && (
-                <div className={styles.result}>
-                    <h3>Generated JSON</h3>
-                    <pre>{jsonResult}</pre>
-                </div>
-            )}
         </form>
     );
 };

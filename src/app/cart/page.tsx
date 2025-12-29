@@ -29,11 +29,18 @@ export default function CartPage() {
                     {items.map((item, idx) => (
                         <div key={`${item.productId}-${idx}`} className={styles.item}>
                             <div className={styles.itemInfo}>
-                                <h3>Product ID: {item.productId}</h3> {/* In real app, fetch details via ID */}
-                                <p>Quantity: {item.quantity}</p>
+                                <h3 className={styles.itemName}>
+                                    <Link href={`/product/${item.productSlug}`} className={styles.itemLink}>
+                                        {item.productName}
+                                    </Link>
+                                </h3>
+                                <p className={styles.itemQty}>Quantity: {item.quantity}</p>
                                 <div className={styles.options}>
-                                    {Object.entries(item.selectedOptions).map(([key, val]) => (
-                                        <span key={key} className={styles.optionTag}>{key}: {val}</span>
+                                    {Object.entries(item.displayOptions || {}).map(([key, val]) => (
+                                        <div key={key} className={styles.optionRow}>
+                                            <span className={styles.optionKey}>{key}:</span>
+                                            <span className={styles.optionVal}>{val}</span>
+                                        </div>
                                     ))}
                                 </div>
                             </div>

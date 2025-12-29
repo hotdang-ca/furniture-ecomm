@@ -1,8 +1,9 @@
-import { PRODUCTS } from '@/lib/mock-data';
+import { db } from '@/lib/db';
 import styles from '../orders/page.module.css'; // Re-use table styles
+import Link from 'next/link';
 
 export default function AdminProductsPage() {
-    const products = PRODUCTS;
+    const products = db.getProducts();
 
     return (
         <div>
@@ -17,7 +18,7 @@ export default function AdminProductsPage() {
                             <th>Category</th>
                             <th>Base Price</th>
                             <th>Stock</th>
-                            <th>Lead Time</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +31,11 @@ export default function AdminProductsPage() {
                                 <td>{product.categoryId}</td>
                                 <td className={styles.totalCell}>${product.basePrice.toLocaleString()}</td>
                                 <td>{product.inStock ? 'In Stock' : 'Out of Stock'}</td>
-                                <td>{product.leadTime}</td>
+                                <td>
+                                    <Link href={`/admin/products/${product.id}/edit`} style={{ color: '#3498db', textDecoration: 'underline' }}>
+                                        Edit
+                                    </Link>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
