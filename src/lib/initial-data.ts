@@ -7,7 +7,15 @@ export const INITIAL_ORDERS: Order[] = [
         customerEmail: 'alice@example.com',
         status: 'Building',
         items: [
-            { productId: 'p-1', quantity: 1, selectedOptions: { 'opt-wood': 'w-cherry' }, totalPrice: 600 }
+            {
+                productId: 'p-1',
+                productName: 'Mission Oak Coffee Table',
+                productSlug: 'mission-oak-coffee-table',
+                quantity: 1,
+                selectedOptions: { 'opt-wood': 'w-cherry' },
+                displayOptions: { 'Wood Type': 'Cherry (+$150)' },
+                totalPrice: 600
+            }
         ],
         total: 600,
         date: '2023-10-25',
@@ -19,7 +27,15 @@ export const INITIAL_ORDERS: Order[] = [
         customerEmail: 'bob@example.com',
         status: 'Ordered',
         items: [
-            { productId: 'p-3', quantity: 1, selectedOptions: {}, totalPrice: 1800 }
+            {
+                productId: 'p-3',
+                productName: 'Farmhouse Dining Table',
+                productSlug: 'farmhouse-dining-table',
+                quantity: 1,
+                selectedOptions: {},
+                displayOptions: {},
+                totalPrice: 1800
+            }
         ],
         total: 1800,
         date: '2023-11-01'
@@ -30,7 +46,15 @@ export const INITIAL_ORDERS: Order[] = [
         customerEmail: 'charlie@example.com',
         status: 'Delivered',
         items: [
-            { productId: 'p-2', quantity: 1, selectedOptions: {}, totalPrice: 1200 }
+            {
+                productId: 'p-2',
+                productName: 'Sleigh Bed Frame',
+                productSlug: 'sleigh-bed-frame',
+                quantity: 1,
+                selectedOptions: {},
+                displayOptions: {},
+                totalPrice: 1200
+            }
         ],
         total: 1200,
         date: '2023-09-15',
