@@ -6,7 +6,7 @@ export const Footer = () => {
             <div className={styles.container}>
                 <div className={styles.content}>
                     <div className={styles.section}>
-                        <h3>QualityMock Woods</h3>
+                        <h3>Amish Connection</h3>
                         <p>Handcrafted in the heart of Amish country.</p>
                     </div>
                     <div className={styles.section}>
@@ -22,7 +22,7 @@ export const Footer = () => {
                     </div>
                 </div>
                 <div className={styles.copyright}>
-                    &copy; {new Date().getFullYear()} QualityMock Woods. All rights reserved.
+                    &copy; {new Date().getFullYear()} Amish Connection. All rights reserved.
                 </div>
             </div>
         </footer>

@@ -12,7 +12,7 @@ export default function Home() {
     <main className={styles.main}>
       <section className={styles.hero}>
         <div className={styles.heroContent}>
-          <h1>QualityMock Woods</h1>
+          <h1>Amish Connection</h1>
           <p>Timeless Amish Craftsmanship. Built to last for generations.</p>
           <div className={styles.heroButtons}>
             <Link href="/shop/living-room">
