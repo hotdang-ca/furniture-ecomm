@@ -19,7 +19,7 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "QualityMock Woods | Handcrafted Amish Furniture",
+  title: "Amish Connection | Handcrafted Amish Furniture",
   description: "Premium handcrafted Amish furniture for your home.",
 };
 
